@@ -8,7 +8,8 @@ public class Talking : Interactable {
 
     public DialogueTrigger dialogueTrigger;
 
-    public override void Interact() {
-        dialogueTrigger.TriggerDialogue();
+
+    public override void Interact(Player player) {
+        dialogueTrigger.TriggerDialogue(player);
     } // Interact
 } // Talking

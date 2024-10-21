@@ -4,8 +4,9 @@ using UnityEngine;
 
 [RequireComponent(typeof(PolygonCollider2D))]
 public abstract class Interactable : MonoBehaviour {
-    
-    public abstract void Interact();
+
+
+    public abstract void Interact(Player pl);
 
 
     private void Reset(){
@@ -14,13 +15,13 @@ public abstract class Interactable : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision){
         if(collision.CompareTag("Player")){
-            collision.GetComponent<Character>().OpenInteractableIcon();
+            collision.GetComponent<Player>().OpenInteractableIcon();
         } // if
     } // OnTriggerEnter2D
 
     private void OnTriggerExit2D(Collider2D collision){
         if(collision.CompareTag("Player")){
-            collision.GetComponent<Character>().CloseInteractableIcon();
+            collision.GetComponent<Player>().CloseInteractableIcon();
         } // if
     } // OnTriggerExit2D
 

@@ -12,40 +12,50 @@ public class DialogueManager : MonoBehaviour {
 
     public Animator animator;
 
-    private Queue<Line> sentences; // fifo -- first in first out 
+    private Queue<Line> sentences; // fifo -- first in first out
+
+    private Player player;
+    private int counter;
+
+    private bool DialogueStarted = false;
 
     // Start is called before the first frame update
     void Start() {
         sentences = new Queue<Line>();
+        player = FindObjectOfType<Player>();
     } // Start
 
-    public void StartDialogue(Dialogue dialogue) {
+    public void StartDialogue(Player pl, Dialogue dialogue) {
+        player = pl;
         animator.SetBool("isOpen", true);
 
-
-
+        player.CanInteract = false;
+        player.CanMove = false;
 
         sentences.Clear();
 
         foreach (Line sentence in dialogue.sentences) {
             sentences.Enqueue(sentence);
         }// foreach
+        DialogueStarted = true;
 
         DisplayNextSentence();
     } // StartDialogue
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown("space")) {
+        if (Input.GetKeyDown("space") && DialogueStarted) {
             DisplayNextSentence();
         } // if 
     } // Update
 
     public void DisplayNextSentence() {
-        if(sentences.Count == 0) {
+        if(sentences.Count == 0&& DialogueStarted) {
             EndDialogue();
             return;
         } // if
+        player.CanInteract = false;
+        player.CanMove = false;
 
 
         Line sentence = sentences.Dequeue();
@@ -61,14 +71,15 @@ public class DialogueManager : MonoBehaviour {
 
         foreach (char letter in sentence.speech.ToCharArray()) {
             dialogueText.text += letter;
-            yield return null; // skip frame (time dilation)
-            yield return null; // skip frame (time dilation)
-            yield return null; // skip frame (time dilation)
+            yield return new WaitForSeconds(0.03f);
         } // foreach
     }// TypeSentence
 
-    void EndDialogue() {
+    private void EndDialogue() {
+        DialogueStarted = false;
         animator.SetBool("isOpen", false);
         Debug.Log("End of conversation.");
+        player.CanInteract = true;
+        player.CanMove = true;
     } // EndDialogue
 } // DialogueManager

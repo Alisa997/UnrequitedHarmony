@@ -8,8 +8,7 @@ public class NarrativeTrigger : MonoBehaviour
 {
     public Narrative narrative;
 
-    public void TriggerNarrative()
-    {
-        FindObjectOfType<NarrativeManager>().StartNarrative(narrative);
+    public void TriggerNarrative(Player pl) {
+        FindObjectOfType<NarrativeManager>().StartNarrative(pl, narrative);
     } // TriggerNarrative
 } // NarrativeTrigger

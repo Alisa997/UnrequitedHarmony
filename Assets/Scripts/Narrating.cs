@@ -8,8 +8,8 @@ public class Narrating : Interactable
 
     public NarrativeTrigger narrativeTrigger;
 
-    public override void Interact()
-    {
-        narrativeTrigger.TriggerNarrative();
+
+    public override void Interact(Player player) {
+        narrativeTrigger.TriggerNarrative(player);
     } // Interact
 } // Talking
