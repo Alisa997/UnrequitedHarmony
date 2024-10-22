@@ -21,6 +21,7 @@ public class CloserLookManager : MonoBehaviour
     } // Start
 
     public void StartCloserLook(Player pl, CloserLook cl) {
+        player.isInteracting = true;
         animator.SetBool("isOpen", true);
 
         player = pl;
@@ -36,7 +37,10 @@ public class CloserLookManager : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Q)) {
+        if (Input.GetKeyDown(KeyCode.Q)
+            || Input.GetKeyDown(KeyCode.Space)
+            || Input.GetKeyDown(KeyCode.Return))
+        {
             EndCloserLook();
             return;
         } // if 
@@ -58,6 +62,7 @@ public class CloserLookManager : MonoBehaviour
         Debug.Log("End of closer look.");
         player.CanInteract = true;
         player.CanMove = true;
+        player.isInteracting = false;
     } // EndDialogue
 
 }

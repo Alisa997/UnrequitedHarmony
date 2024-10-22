@@ -11,6 +11,7 @@ public class Player : Character
     private Rigidbody2D player;
 
     public bool CanInteract;
+    public bool isInteracting; 
 
     private Vector2 rayBox = new Vector2(1f, 1f);
 
@@ -19,6 +20,8 @@ public class Player : Character
 
         interactIcon.SetActive(false);
         CanInteract = true;
+        isInteracting = false;
+
         CanMove = true;
     } // Update
 
@@ -38,16 +41,16 @@ public class Player : Character
     {
         direction = Vector2.zero; // reset direction
 
-        if (Input.GetKey(KeyCode.UpArrow)) // up
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) // up
             direction = Vector2.up;
 
-        if (Input.GetKey(KeyCode.DownArrow)) // down
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))// down
             direction = Vector2.down;
 
-        if (Input.GetKey(KeyCode.RightArrow)) // right
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) // right
             direction = Vector2.right;
 
-        if (Input.GetKey(KeyCode.LeftArrow)) // left
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) // left
             direction = Vector2.left;
 
     } // GetInput

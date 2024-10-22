@@ -32,6 +32,7 @@ public class NarrativeManager : MonoBehaviour
 
         player.CanInteract = false;
         player.CanMove = false;
+        player.isInteracting = true;
 
         sentences.Clear();
 
@@ -98,6 +99,8 @@ public class NarrativeManager : MonoBehaviour
         Debug.Log("End of conversation.");
         player.CanInteract = true;
         player.CanMove = true;
+
+        player.isInteracting = false;
         NarrationStarted = false;
         if (current.isQuestion && current.answer&& counter == 0) {
             counter++;
