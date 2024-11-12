@@ -7,7 +7,7 @@ public abstract class Character : MonoBehaviour
 
     // The Chracter's movement speed
     [SerializeField] // available from unity 
-    private float speed;
+    public float speed;
 
     [SerializeField]
     private Animator animator;
@@ -30,7 +30,7 @@ public abstract class Character : MonoBehaviour
 
 
     // Moves the character
-    public void Move() {
+    public virtual void Move() {
 
         transform.Translate(direction * speed * Time.deltaTime);
 

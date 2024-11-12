@@ -32,7 +32,7 @@ public class Player : Character
         } // if
 
         GetInput();
-        base.Update();
+        if (CanMove) Move();
 
     } // Update
 
@@ -40,21 +40,23 @@ public class Player : Character
     private void GetInput()
     {
         direction = Vector2.zero; // reset direction
-
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) // up
-            direction = Vector2.up;
-
-        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))// down
-            direction = Vector2.down;
-
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) // right
-            direction = Vector2.right;
-
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) // left
-            direction = Vector2.left;
+        direction.x = Input.GetAxisRaw("Horizontal");
+        direction.y = Input.GetAxisRaw("Vertical");
 
     } // GetInput
 
+    // Moves the character
+    public override void Move() {
+
+        //player.MovePosition(new Vector2(transform.position.x + direction.x * speed * Time.deltaTime,
+        //    transform.position.y + direction.y * speed * Time.deltaTime));
+
+        player.MovePosition(
+            new Vector2(transform.position.x, transform.position.y) + direction * speed * Time.fixedDeltaTime);
+
+
+        AnimateMovement(direction);
+    } // Move
 
     public void OpenInteractableIcon() {
         interactIcon.SetActive(true);

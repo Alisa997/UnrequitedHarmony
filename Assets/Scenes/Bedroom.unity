@@ -837,6 +837,7 @@ MonoBehaviour:
   interactIcon: {fileID: 670850330}
   player: {fileID: 303064033}
   CanInteract: 0
+  isInteracting: 0
 --- !u!95 &303064031
 Animator:
   serializedVersion: 5
@@ -2540,7 +2541,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: af48cd5d5b4ef4582a4b2000361bafd6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5319291b9741641489e7901c329e90fd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
