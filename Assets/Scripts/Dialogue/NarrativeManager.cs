@@ -56,7 +56,7 @@ public class NarrativeManager : MonoBehaviour
             Input.GetKeyDown(KeyCode.DownArrow))) {
             SwitchAnswer();
         }
-        if (Input.GetKeyDown("space") && NarrationStarted) {
+        if ((Input.GetKeyDown("space") || Input.GetKeyDown("return")) && NarrationStarted) {
             DisplayNextSentence();
         } // if 
     } // Update

@@ -12,6 +12,9 @@ public class Tutorial : MonoBehaviour
     private Sprite lainey;
 
     [SerializeField]
+    private GameObject icon;
+
+    [SerializeField]
     private Player player;
 
     [SerializeField]
@@ -31,6 +34,7 @@ public class Tutorial : MonoBehaviour
     private int counter = 0;
 
     public AudioSource audioSource;
+    public AudioClip audioClip;
 
     // Start is called before the first frame update
     void Start() {
@@ -39,6 +43,7 @@ public class Tutorial : MonoBehaviour
         musicboxAnimator.SetBool("isActive", false);
         musicbox.SetActive(false);
         player.CanMove = false;
+        counter = 0;
 
 
         dialogueTrigger = new DialogueTrigger()
@@ -56,15 +61,12 @@ public class Tutorial : MonoBehaviour
         };
 
         dialogueTrigger.TriggerDialogue(player);
-
-        //player.CanMove = false;
     }
 
     // Update is called once per frame
     void Update() {
-        if (player.CanMove && counter == 0) {
+        if (player.CanMove && counter == 0) { 
             StartCoroutine(Play());
-            counter++;
         }
         if(player.transform.position != new Vector3(0, 0, 0) && counter == 1) {
             player.CanInteract = false;
@@ -72,14 +74,13 @@ public class Tutorial : MonoBehaviour
             counter++;
         }
         if (player.CanInteract && counter == 2) {
+            player.CanInteract = false;
             StartCoroutine(Play3());
             counter++;
-            player.CanInteract = false;
             player.isInteracting = true;
         }
-
-        // починить: так чтобы можно было нажать кнопку только рядом со шкатулкой  
-        if (Input.GetKeyDown(KeyCode.Z) && !player.isInteracting) {
+ 
+        if (Input.GetKeyDown(KeyCode.Z) && icon.activeSelf) {
             audioSource.Pause();
             StartCoroutine(End());
             counter++;
@@ -93,6 +94,7 @@ public class Tutorial : MonoBehaviour
 
     IEnumerator Play() {
         player.CanMove = false;
+        counter = 1;
 
         lolaAnimator.SetBool("isActive", true);
         yield return new WaitForSeconds(2f); // skip frame (time dilation)
@@ -163,11 +165,13 @@ public class Tutorial : MonoBehaviour
         };
 
         dialogueTrigger.TriggerDialogue(player);
-    } // Play2
+    } // Play3
 
 
     IEnumerator End() {
         shadowAnimator.SetBool("isOn", true);
+        audioSource.clip = audioClip;
+        audioSource.PlayOneShot(audioClip);
         yield return new WaitForSeconds(6f); // skip frame (time dilation)
 
         dialogueTrigger = new DialogueTrigger() {

@@ -12,7 +12,7 @@ public class DialogueManager : MonoBehaviour {
 
     public Animator animator;
 
-    private Queue<Line> sentences; // fifo -- first in first out
+    private Queue<Line> sentences = new Queue<Line>(); // fifo -- first in first out
 
     private Player player;
     private int counter;
