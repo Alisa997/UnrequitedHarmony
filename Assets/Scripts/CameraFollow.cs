@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
@@ -10,8 +11,13 @@ public class CameraFollow : MonoBehaviour
     [SerializeField]
     private float yc;
 
-
     public Transform target;
+    
+
+    void Start() {
+        transform.position = new Vector3(PlayerStats.playerPos[0], PlayerStats.playerPos[1], -1);
+    } // Start
+
     // Update is called once per frame
     void Update() {
         float x = transform.position.x, y = transform.position.y;

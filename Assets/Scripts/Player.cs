@@ -11,18 +11,30 @@ public class Player : Character
     private Rigidbody2D player;
 
     public bool CanInteract;
-    public bool isInteracting; 
+    public bool isInteracting;
+
+    [SerializeField]
+    private GameObject piece;
+    [SerializeField]
+    private GameObject pieceInHands;
+    [SerializeField]
+    private int pieceIndex;
 
     private Vector2 rayBox = new Vector2(1f, 1f);
 
     // Start is called before the first frame update
     void Start() {
+        player.position = new Vector2(PlayerStats.playerPos[0], PlayerStats.playerPos[1]);
 
         interactIcon.SetActive(false);
         CanInteract = true;
         isInteracting = false;
 
         CanMove = true;
+
+        piece.SetActive(!PlayerStats.isCollected[pieceIndex]);
+        pieceInHands.SetActive(PlayerStats.inHands);
+
     } // Update
 
     // Update is called once per frame
@@ -33,6 +45,9 @@ public class Player : Character
 
         GetInput();
         if (CanMove) Move();
+
+        piece.SetActive(!PlayerStats.isCollected[pieceIndex]);
+        pieceInHands.SetActive(PlayerStats.inHands);
 
     } // Update
 

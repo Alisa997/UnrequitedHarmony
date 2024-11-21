@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class DialogueManager : MonoBehaviour {
     public TMP_Text nameText;
@@ -18,6 +19,8 @@ public class DialogueManager : MonoBehaviour {
     private int counter;
 
     private bool DialogueStarted = false;
+    private bool sentenceFinished = true;
+    private Line currentline;
 
     // Start is called before the first frame update
     void Start() {
@@ -45,7 +48,12 @@ public class DialogueManager : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (Input.GetKeyDown("space") && DialogueStarted) {
-            DisplayNextSentence();
+            if (sentenceFinished) DisplayNextSentence();
+            else {
+                StopAllCoroutines();
+                dialogueText.text = currentline.speech;
+                sentenceFinished = true;
+            }
         } // if 
     } // Update
 
@@ -54,11 +62,13 @@ public class DialogueManager : MonoBehaviour {
             EndDialogue();
             return;
         } // if
+        sentenceFinished = false;
         player.CanInteract = false;
         player.CanMove = false;
 
 
         Line sentence = sentences.Dequeue();
+        currentline = sentence;
 
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence)); // starting parallel task
@@ -73,6 +83,7 @@ public class DialogueManager : MonoBehaviour {
             dialogueText.text += letter;
             yield return new WaitForSeconds(0.03f);
         } // foreach
+        sentenceFinished = true;
     }// TypeSentence
 
     private void EndDialogue() {

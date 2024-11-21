@@ -13,6 +13,9 @@ public class CloserLookManager : MonoBehaviour
     public Animator animator;
 
     private Player player = new Player();
+
+    private bool textFinished = true;
+    private string text;
     //private CloserLook closerLook = new CloserLook();
 
     // Start is called before the first frame update
@@ -24,12 +27,15 @@ public class CloserLookManager : MonoBehaviour
         player.isInteracting = true;
         animator.SetBool("isOpen", true);
 
+
         player = pl;
 
         player.CanInteract = false;
         player.CanMove = false;
 
         background.sprite = cl.sprite;
+        textFinished = false;
+        text = cl.description;
 
         StopAllCoroutines();
         StartCoroutine(TypeDescription(cl.description)); // starting parallel task
@@ -41,7 +47,13 @@ public class CloserLookManager : MonoBehaviour
             || Input.GetKeyDown(KeyCode.Space)
             || Input.GetKeyDown(KeyCode.Return))
         {
-            EndCloserLook();
+            if (textFinished) EndCloserLook();
+            else {
+                StopAllCoroutines();
+                text = text.Replace("+", "<br>");
+                description.text = text;
+                textFinished = true;
+            }
             return;
         } // if 
     } // Update
@@ -50,10 +62,11 @@ public class CloserLookManager : MonoBehaviour
         description.text = "";
 
         foreach (char letter in text.ToCharArray()) {
-            if (letter == '+') description.text += "<br>";
-            else description.text += letter;
+            text = text.Replace("+", "<br>");
+            description.text += letter;
             yield return new WaitForSeconds(0.03f);
         } // foreach
+        textFinished = true;
     }// TypeDescription
 
     void EndCloserLook() {

@@ -17,9 +17,12 @@ public class NarrativeManager : MonoBehaviour
     private Player player;
     private int counter = 0;
     private bool NarrationStarted = false;
+
+    private bool sentenceFinished = true;
+    private Sentence currentline;
+    private string textBefore;
     // Start is called before the first frame update
-    void Start() {
-        sentences = new Queue<Sentence>();
+    public void Start() {
         current = new Sentence {toAdd = false, text = ""};
         player = FindObjectOfType<Player>(); 
     } // Start
@@ -34,7 +37,7 @@ public class NarrativeManager : MonoBehaviour
         player.CanMove = false;
         player.isInteracting = true;
 
-        sentences.Clear();
+        sentences = new Queue<Sentence>();
 
         foreach (Sentence sentence in narrative.sentences) {
             sentences.Enqueue(new Sentence() { isQuestion = sentence.isQuestion,
@@ -57,7 +60,13 @@ public class NarrativeManager : MonoBehaviour
             SwitchAnswer();
         }
         if ((Input.GetKeyDown("space") || Input.GetKeyDown("return")) && NarrationStarted) {
-            DisplayNextSentence();
+            if (sentenceFinished) DisplayNextSentence();
+            else {
+                StopAllCoroutines();
+                if (currentline.toAdd) text.text = textBefore + currentline.text;
+                else text.text = currentline.text;
+                sentenceFinished = true;
+            }
         } // if 
     } // Update
 
@@ -72,6 +81,8 @@ public class NarrativeManager : MonoBehaviour
         player.CanMove = false;
 
         Sentence sentence = sentences.Dequeue();
+        currentline = sentence;
+        sentenceFinished = false;
 
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence)); // starting parallel task
@@ -80,6 +91,7 @@ public class NarrativeManager : MonoBehaviour
     IEnumerator TypeSentence(Sentence sentence) {
         animator.SetBool("isQuestion", sentence.isQuestion);
         current = sentence;
+        textBefore = text.text + " ";
         if (sentence.toAdd) text.text += " ";
         else text.text = "";
 
@@ -87,6 +99,7 @@ public class NarrativeManager : MonoBehaviour
             text.text += letter;
             yield return new WaitForSeconds(0.03f); // skip frame (time dilation)
         } // foreach
+        sentenceFinished = true;
     }// TypeSentence
 
     private void SwitchAnswer() {

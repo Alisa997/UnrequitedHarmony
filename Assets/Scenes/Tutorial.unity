@@ -678,7 +678,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &303064029
 Transform:
   m_ObjectHideFlags: 0
@@ -749,10 +749,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.036553368, y: -0.30311638}
+  m_Offset: {x: -0.042577654, y: -0.07668996}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.25}
     oldSize: {x: 1, y: 1}
     newSize: {x: 0.6666667, y: 0.6666667}
     adaptiveTilingThreshold: 0.5
@@ -760,7 +760,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5137944, y: 0.18903434}
+  m_Size: {x: 0.45355147, y: 0.14186227}
   m_EdgeRadius: 0
 --- !u!114 &303064035
 MonoBehaviour:
@@ -781,6 +781,9 @@ MonoBehaviour:
   player: {fileID: 303064033}
   CanInteract: 1
   isInteracting: 0
+  piece: {fileID: 1277694442}
+  pieceInHands: {fileID: 1277694442}
+  pieceIndex: 0
 --- !u!1 &338248690
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,7 +1232,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.12941177, g: 0.20784315, b: 0.25882354, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2710,12 +2713,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 2160, y: 1440}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
