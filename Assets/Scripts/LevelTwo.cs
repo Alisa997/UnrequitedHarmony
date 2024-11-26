@@ -10,14 +10,17 @@ public class LevelTwo : Interactable
     private GameObject gift;
     [SerializeField]
     private GameObject giftOpened;
+    [SerializeField]
+    private Animator animator;
 
     private int count = 0;
+    private bool animationDone = false;
     private bool changeSceneDone = false;
 
     public override void Interact(Player player) {
         gift.SetActive(false);
         giftOpened.SetActive(true);
-        StartCoroutine(Wait(5));
+        StartCoroutine(Wait(2));
     } // Interact
 
 
@@ -33,7 +36,12 @@ public class LevelTwo : Interactable
 
     // Update is called once per frame
     void Update() {
-        if (count == 1 && !changeSceneDone) {
+        if (count == 1 && !animationDone) {
+            animationDone = true;
+            animator.SetBool("isOn", true);
+            StartCoroutine(Wait(7));
+        }
+        if (count == 2 && !changeSceneDone) {
             changeSceneDone = true;
             SceneManager.LoadScene("BedroomNow");
         }

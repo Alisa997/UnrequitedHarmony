@@ -811,7 +811,7 @@ MonoBehaviour:
   pieceIndex: 7
   piece: {fileID: 263682356}
   pieceInHands: {fileID: 1628795226}
-  nextScene: BedroomNow
+  nextScene: Level8
   x: 0
   y: 0
   player: {fileID: 897581936}
@@ -1042,7 +1042,7 @@ MonoBehaviour:
   pieceIndex: 4
   piece: {fileID: 311541350}
   pieceInHands: {fileID: 2028736476}
-  nextScene: BedroomNow
+  nextScene: Bedroom
   x: 0
   y: 0
   player: {fileID: 897581936}
@@ -1815,8 +1815,8 @@ MonoBehaviour:
   piece: {fileID: 542191808}
   pieceInHands: {fileID: 753757863}
   nextScene: Level2
-  x: 0
-  y: 0
+  x: 1.7
+  y: -1.5
   player: {fileID: 897581936}
 --- !u!60 &542191810
 PolygonCollider2D:
@@ -7129,6 +7129,7 @@ MonoBehaviour:
   - {fileID: 96305621}
   - {fileID: 204493833}
   - {fileID: 263682358}
+  player: {fileID: 897581936}
 --- !u!1 &2008116384
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,4 +14,5 @@ public static class PlayerStats {
 
     public static string nextScene = " ";
     public static bool talkedToMom = false;
+    public static bool isStart = true;
 }

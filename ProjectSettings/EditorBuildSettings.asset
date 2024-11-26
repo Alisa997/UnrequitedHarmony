@@ -44,4 +44,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level7.unity
     guid: 6e51a4329f4374077b6bc0ae2f6ffa38
+  - enabled: 1
+    path: Assets/Scenes/Closet.unity
+    guid: 0a8037e981750436fbdb0bbe03c5487c
+  - enabled: 1
+    path: Assets/Scenes/Level8.unity
+    guid: dacfe6c0e39da454d9600201f88720af
+  - enabled: 1
+    path: Assets/Scenes/CreditsRoll.unity
+    guid: ee13cd413cd144c5587a1c976276c99b
   m_configObjects: {}
