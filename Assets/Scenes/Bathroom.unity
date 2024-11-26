@@ -756,7 +756,7 @@ MonoBehaviour:
   player: {fileID: 303064033}
   CanInteract: 0
   isInteracting: 0
-  piece: {fileID: 0}
+  piece: {fileID: 1516032}
   pieceInHands: {fileID: 1516032}
   pieceIndex: 0
 --- !u!95 &303064031

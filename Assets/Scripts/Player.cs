@@ -13,12 +13,8 @@ public class Player : Character
     public bool CanInteract;
     public bool isInteracting;
 
-    [SerializeField]
-    private GameObject piece;
-    [SerializeField]
-    private GameObject pieceInHands;
-    [SerializeField]
-    private int pieceIndex;
+
+    private bool playerFixed = false;
 
     private Vector2 rayBox = new Vector2(1f, 1f);
 
@@ -32,13 +28,17 @@ public class Player : Character
 
         CanMove = true;
 
-        piece.SetActive(!PlayerStats.isCollected[pieceIndex]);
-        pieceInHands.SetActive(PlayerStats.inHands);
+
 
     } // Update
 
     // Update is called once per frame
     protected override void Update() {
+        if(!playerFixed) {
+            player.position = new Vector2(PlayerStats.playerPos[0], PlayerStats.playerPos[1]);
+            playerFixed = true;
+        }
+
         if (Input.GetKeyDown(KeyCode.Z) && CanInteract) {
             CheckInteraction();
         } // if
@@ -46,8 +46,6 @@ public class Player : Character
         GetInput();
         if (CanMove) Move();
 
-        piece.SetActive(!PlayerStats.isCollected[pieceIndex]);
-        pieceInHands.SetActive(PlayerStats.inHands);
 
     } // Update
 
@@ -82,7 +80,7 @@ public class Player : Character
     } // CloseInteractableIcon
 
     private void CheckInteraction() {
-        if (!interactIcon.active) return;
+        if (!interactIcon.active || !CanInteract) return;
         RaycastHit2D[] hits = Physics2D.BoxCastAll(player.position, rayBox, 0, Vector2.zero);
         if (hits.Length > 0)
         {

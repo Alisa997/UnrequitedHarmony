@@ -89,7 +89,7 @@ public class Tutorial : MonoBehaviour
 
         if(player.CanInteract && counter == 4) {
             PlayerStats.playerPos = new float[] {-3.6f, -1.39f};
-            SceneManager.LoadScene("Bedroom");
+            SceneManager.LoadScene("BedroomNow");
         }
     }
 

@@ -2284,7 +2284,7 @@ MonoBehaviour:
   shadowAnimator: {fileID: 447481464}
   musicbox: {fileID: 22045478}
   audioSource: {fileID: 22045485}
-  audioClip: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 46e50abdc3a1b44479095993373d09c0, type: 3}
 --- !u!1 &1120330296
 GameObject:
   m_ObjectHideFlags: 0

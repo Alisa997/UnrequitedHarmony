@@ -24,9 +24,24 @@ EditorBuildSettings:
     path: Assets/Scenes/Bathroom.unity
     guid: b78d339bff5ee44c687ae31ce1d6e844
   - enabled: 1
-    path: Assets/Scenes/Bedroom 1.unity
+    path: Assets/Scenes/BedroomNow.unity
     guid: 030f4ad474c4347b389fb73b9f9088a0
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: a0aaca6a070144b08aa695e65258b4b3
+  - enabled: 1
+    path: Assets/Scenes/Level3.unity
+    guid: ab20d39e514b14d0ea570ad2d8a82687
+  - enabled: 1
+    path: Assets/Scenes/Level6.unity
+    guid: e553d33c5bd4f4c558ae7a19bb54bbfc
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: 1a4d689c16a8c42bbb30ade73330bdf6
+  - enabled: 1
+    path: Assets/Scenes/Level4.unity
+    guid: 111282b1bb2ea4e618d2493c28e48aac
+  - enabled: 1
+    path: Assets/Scenes/Level7.unity
+    guid: 6e51a4329f4374077b6bc0ae2f6ffa38
   m_configObjects: {}

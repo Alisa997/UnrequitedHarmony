@@ -76,6 +76,9 @@ public class DialogueManager : MonoBehaviour {
 
     IEnumerator TypeSentence(Line sentence) {
         dialogueText.text = "";
+
+        if (sentence.character == "Mom") PlayerStats.talkedToMom = true;
+        
         nameText.text = sentence.character;
         characterImage.sprite = sentence.sprite;
 
